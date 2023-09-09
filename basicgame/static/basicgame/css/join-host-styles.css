@@ -1,0 +1,57 @@
+#custom-submit {
+    box-sizing: margin-box;
+    display: block;
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-width: 1.5px;
+    border-color: var(--medium-transparent-grey);
+    color: var(--black-text);
+}
+
+.custom-checkbox {
+    width: 2em;
+    height: 2em;
+    margin-left: 10%;
+    border-style: solid;
+    border-color: var(--medium-transparent-grey);
+    border-width: 2px;
+}
+
+#spinner {
+    height: 50px;
+    width: 50px;
+    border-width: 10px;
+    position: static;
+    display: none;
+    margin: auto;
+    margin-top: 1.8em;
+}
+
+#form-error {
+    display: none;
+}
+
+#philosopher {
+    position: fixed;
+    bottom: -1.1em;
+    left: -1.1em;
+}
+
+@media (min-width: 768px) {
+
+    #custom-submit {
+        width: 15%;
+        min-width: 8em;
+    }
+
+    .custom-checkbox {
+        margin-left: 30%;
+    }
+
+    h1 {
+        margin-bottom: 0.5em;
+    }
+}

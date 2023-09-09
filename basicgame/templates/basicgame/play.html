@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'basicgame/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" sizes="32x32" href="{% static 'basicgame/favicons/favicon.ico' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'basicgame/favicons/favicon.svg' %}">
+    <link rel="manifest" href="{% static 'basicgame/favicons/site.webmanifest' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/variables.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/base-styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/play-styles.css' %}">
+    <title>Play Mates Rate Game {{game_name}}</title>
+</head>
+
+<body>
+    <img id="philosopher" src="{% static 'basicgame/favicons/android-chrome-512x512.png' %}" alt="logo of thinking philosopher">
+    <img id="speech-bubble" src="{% static 'basicgame/images/speech-bubble-right.png' %}" alt="speech bubble">
+    <div id="speech"></div>
+    <div class="loader" id="spinner"></div>
+    <div id="leave" class="modal">
+        <div class="modal-content">
+            <p>Return to the main menu?<br>If your cookie gets deleted, you will not be able to re-join.</p>
+            <span id="close-leave">✖</span>
+            <span id="yes-leave">✔</span>
+        </div>
+    </div>
+    <div id="timer"></div>
+    <main id="desktop-center">
+        <h1 id="heading-smaller"></h1>
+        <h1 id="heading"></h1>
+        <div id="boring-header" class="boring-header">The category is</div>
+        <h2 id="boring-category" class="big-text boring-header"></h2>
+        <img id="winner-image">
+        <table></table>
+        <div class="small-text vote-text">How does</div>
+        <div class="small-text winner-text"><br>The character</div>
+        <h2 id="character" class="big-text"></h2>
+        <h2 id="winning-character" class="big-text"></h2>
+        <div class="small-text winner-text">scored</div>
+        <h2 id="score" class="big-text"></h2>
+        <div class="small-text vote-text">...score in the category of</div>
+        <div class="small-text winner-text">in the category of</div>
+        <h2 id="category" class="big-text"></h2>
+        <div class="small-text vote-submit-text">Give your rating out of 100:</div>
+        <input type="text" id="game-input" class="text-input">
+        <input type="button" value="Submit" id="game-submit" class="big-buttons">
+        <input type="button" value="Skip Round" id="force-next" class="big-buttons">
+        <div id="validator" class="form-error"></div>
+    </main>
+    <div id="help-text">
+        <h2 id="help-title">How do I play?</h2>
+        <button id="close-help" class="big-buttons">✖</button>
+        <p>
+            Each round, one player is asked to think of a <span class="bold">category</span> that people or things can
+            be judged in (e.g. speed, wisdom, cooking skills etc.).
+            <br><br>
+            Meanwhile, the remaining players must each think of a <span class="bold">character</span> (e.g. Mark
+            Zuckerberg, Peter Pan, your friend).
+            <br><br>
+            In 'boring mode' the category is known in advance, but otherwise this is a mystery!
+            <br><br>
+            After all submissions are collected, players vote on a rating from 1 to 100 for each character in the chosen
+            category. Discussion and debate are encouraged.
+            <br><br>
+            At the end of each round, characters receive an average score based on player votes. The highest score
+            wins, and players are awarded points based on the performance of their character.
+            <br><br>
+            Make sure cookies are enabled, and enjoy!
+        </p>
+    </div>
+    <footer id="game-name-footer">Game ID: {{game_name}}</footer>
+    <button id="help-button" class="big-buttons">?</button>
+    {{ game_name|json_script:"game-name" }}
+    {{ players|json_script:"players"}}
+    {{ host|json_script:"game-host" }}
+    {{ character_hints|json_script:"character-hints" }}
+    {{ category_hints|json_script:"category-hints" }}
+    <script type="module" src="{% static 'basicgame/js/base.js' %}"></script>
+    <script type="module" src="{% static 'basicgame/js/play.js' %}"></script>
+
+</body>
+
+</html>

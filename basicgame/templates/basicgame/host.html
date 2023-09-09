@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'basicgame/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" sizes="32x32" href="{% static 'basicgame/favicons/favicon.ico' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'basicgame/favicons/favicon.svg' %}">
+    <link rel="manifest" href="{% static 'basicgame/favicons/site.webmanifest' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/variables.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/base-styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/join-host-styles.css' %}">
+    <title>Mates Rate Host Game</title>
+</head>
+
+<body>
+    <main class="center">
+        <h1>Mates Rate</h1>
+        <form method="post" action='' id="host-form">
+            <label for="nickname" class="small-label">Player Nickname</label>
+            <input type="text" id="nickname" class="text-input" name="nickname">
+            <label for="num-of-cycles" class="small-label">Number of Cycles</label>
+            <input type="text" id="num-of-cycles" name="num-of-cycles" class="text-input" value="3">
+            <label for="boring" class="small-label">Boring Mode</label>
+            <input type="checkbox" id="boring" class="custom-checkbox" name="boring">
+            <input type="text" id="game-name-input" style="display: none" name="game-name">
+            <input type="text" id="player-name-input" style="display: none" name="player-name">
+            <div id="form-error" class="form-error"></div>
+            <input type="submit" value="Create Game" id="custom-submit" class="big-buttons">
+            <div class="loader" id="spinner"></div>
+        </form>
+    </main>
+    <div id="help-text">
+        <h2 id="help-title">What do I pick?</h2>
+        <button id="close-help" class="big-buttons">✖</button>
+        <p><b>Player Nickname:</b><br><br>This will be your nickname as you play, displayed on leaderboards and winning views.<br><br>
+            <b>Number of Cycles:</b><br><br>One cycle contains as many <b>rounds</b> as there are <b>players</b> in the game. So, with 5 players, a cycle lasts for 5 rounds.<br><br>For a short game with 3-5 players, pick 2 or 3.<br><br>
+            <b>Boring Mode:</b><br><br>When selected, all players will know the category in advance. Booo!
+        </p>
+    </div>
+    <footer>
+        <button id="help-button" class="big-buttons">?</button>
+    </footer>
+    <img id="philosopher" src="{% static 'basicgame/favicons/android-chrome-512x512.png' %}" alt="logo of thinking philosopher">
+    {{ game_name|json_script:"game-name" }}
+    <script type="module" src="{% static 'basicgame/js/base.js' %}"></script>
+    <script type="module" src="{% static 'basicgame/js/host.js' %}"></script>
+
+</body>
+
+</html>

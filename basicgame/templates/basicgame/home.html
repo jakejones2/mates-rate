@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mates Rate Home</title>
+    {% load static %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'basicgame/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" sizes="32x32" href="{% static 'basicgame/favicons/favicon.ico' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'basicgame/favicons/favicon.svg' %}">
+    <link rel="manifest" href="{% static 'basicgame/favicons/site.webmanifest' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/variables.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/base-styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/home-styles.css' %}">
+</head>
+
+<body>
+    <div class="center">
+        <h1>Mates Rate</h1>
+        <div id="logo">
+            <img id="philosopher" src="{% static 'basicgame/favicons/android-chrome-512x512.png' %}" alt="logo of thinking philosopher">
+            <img class="left-hints" id="sb-left" src="{% static 'basicgame/images/speech-bubble-left.png' %}" alt="speech bubble">
+            <div class="left-hints" id="speech-left"></div>
+            <img class="right-hints" id="sb-right" src="{% static 'basicgame/images/speech-bubble-right.png' %}" alt="speech bubble">
+            <div class="right-hints" id="speech-right">Play my game!</div>
+        </div>
+        <div class="loader" id="spinner"></div>
+        <div class="btn-group">
+            <button type="button" id="host-game" class="big-buttons">Create Game</button>
+            <button type="button" id="join-game" class="big-buttons">Join Game</button>
+        </div>
+        <h3>Like TopTrumps®, but you come up with the categories!</h3>
+    </div>
+    <div id="help-text">
+        <h2 id="help-title">How Do I Start?</h2>
+        <button id="close-help" class="big-buttons">✖</button>
+        <p>Welcome to <i>Mates Rate</i>! This is an online game where you can rate your friends, family, and celebrities in funny categories.<br><br>Click <b>'Create Game'</b> to host a new game that your friends can join.<br><br>
+            To join another player's game, select <b>'Join Game'</b>.<br><br>
+            As the game host, you can skip rounds if people are taking too long! To do this, click the button <b>'Skip Round'</b> once the game starts. 
+        </p>
+    </div>
+</body>
+<footer>
+    <button id="help-button" class="big-buttons">?</button>
+</footer>
+<script type="module" src="{% static 'basicgame/js/base.js' %}"></script>
+<script type="module" src="{% static 'basicgame/js/home.js' %}"></script>
+{{ hint_list|json_script:"hint-list" }}
+{{ character_hints|json_script:"character-hints" }}
+{{ category_hints|json_script:"category-hints" }}
+</html>

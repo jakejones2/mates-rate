@@ -1,0 +1,51 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mates Rate Join Game</title>
+    {% load static %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'basicgame/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" sizes="32x32" href="{% static 'basicgame/favicons/favicon.ico' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'basicgame/favicons/favicon.svg' %}">
+    <link rel="manifest" href="{% static 'basicgame/favicons/site.webmanifest' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/variables.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/base-styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'basicgame/css/join-host-styles.css' %}">
+</head>
+
+<body>
+    <main class="center">
+        <h1>Mates Rate</h1>
+        <form method="post" id="join-form">
+            <label for="nickname" id="nickname-label" class="small-label">Player Nickname</label>
+            <input name="nickname" id="nickname" class='text-input' type="text">
+            <label for="game-name" class="small-label">Game ID</label>
+            <input name="game-name" id="game-name" class='text-input' type="text" placeholder="e.g. lizard_wine. Ask host!">
+            <input name="player-name" id="player-name" class="text-input" type="text" style="display: none">
+            <div id="form-error" class="form-error">{{error}}</div>
+            <button id="custom-submit" type="submit" class="big-buttons">Join Game</button>
+            <div class="loader" id="spinner"></div>
+        </form>
+    </main>
+    <div id="help-text">
+        <h2 id="help-title">What do I do?</h2>
+        <button id="close-help" class="big-buttons">✖</button>
+        <p><b>Player Nickname:</b><br><br>This will be your nickname as you play, displayed on leaderboards and winning views.<br><br>
+            <b>Game ID:</b><br><br>The person who clicked <b>'Create Game'</b> has this. It is visible on their device at the top of the lobby page, and takes the form of 'animal_noun'. Hyphens and underscores both work.<br><br>
+        </p>
+    </div>
+    <footer>
+        <button id="help-button" class="big-buttons">?</button>
+    </footer>
+    <img id="philosopher" src="{% static 'basicgame/favicons/android-chrome-512x512.png' %}" alt="logo of thinking philosopher">
+    <script type="module" src="{% static 'basicgame/js/base.js' %}"></script>
+    <script type="module" src="{% static 'basicgame/js/join.js' %}"></script>
+
+</body>
+
+</html>

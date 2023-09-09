@@ -1,0 +1,31 @@
+:root {
+    --background-light-teal: rgb(236, 242, 242);
+    --white: rgb(250, 251, 252);
+
+    --dark-transparent-grey: rgba(140, 141, 142, 0.22);
+    --medium-transparent-grey: rgba(178, 180, 178, 0.35);
+    --faint-transparent-grey: rgba(72, 73, 73, 0.072);
+    --transparent-white: rgba(255, 255, 255, 0.47);
+    --transparent-black: rgba(0, 0, 0, 0.2);
+    --black-text: rgb(1, 15, 28);
+    --dark-grey-text: rgb(54, 54, 54);
+
+    --mobile-fs-large-std: 1.5em;
+    --mobile-fs-std: 1.2em;
+    --mobile-fs-small-std: 1em;
+
+    --mobile-fs-xlarge: calc(2em + 8vw);
+    --mobile-fs-large: calc(1.2em + 8vw);
+    --mobile-fs-medium: calc(0.5em + 9vw);
+    --mobile-fs-small: calc(0.5em + 6vw);
+    --mobile-fs-xsmall: calc(0.2em + 4vw);
+
+    --desktop-fs-large-std: 5em;
+
+    --desktop-fs-xxlarge: calc(5em + 1.5vw);
+    --desktop-fs-xlarge: calc(3em + 3vw);
+    --desktop-fs-large: calc(1.5em + 1.5vw);
+    --desktop-fs-medium: calc(1em + 0.8vw);
+    --desktop-fs-small: calc(1em + 0.5vw);
+    --desktop-fs-xsmall: calc(0.5em + 0.8vw);
+}

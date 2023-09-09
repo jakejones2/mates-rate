@@ -1,0 +1,180 @@
+.btn-group {
+    width: fit-content;
+    margin: auto;
+}
+
+#join-game {
+    display: block;
+}
+
+#host-game {
+    display: block;
+}
+
+#spinner {
+    display: none;
+    position: fixed;
+    top: 35%;
+    left: 0;
+    right: 0;
+    margin: auto
+}
+
+h1 {
+    margin-bottom: 5%;
+}
+
+#logo {
+    position: relative;
+}
+
+#sb-left,
+#sb-right {
+    display: none;
+    position: absolute;
+    width: 35%;
+    height: 60%;
+    opacity: 0%;
+    transition: 0.5s;
+    transition-property: opacity;
+    
+}
+
+#sb-left {
+    top: 17%;
+    right: 60%;
+}
+
+#sb-right {
+    top: 35%;
+    left: 57%;
+}
+
+#speech-left,
+#speech-right {
+    font-size: 0.8em;
+    text-align: center;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 30%;
+    height: 60%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    color: black;
+    box-sizing:border-box;
+    padding: 0.5em;
+    opacity: 0%;
+    transition: 0.5s;
+    transition-property: opacity;
+}
+
+#speech-left {
+    top: 17%;
+    right: 65%;
+}
+
+#speech-right {
+    top: 35%;
+    left: 62%;
+}
+
+#philosopher:hover {
+    border-style: none;
+}
+
+@media (min-width: 768px) {
+    #join-game {
+        display: inline;
+    }
+
+    #host-game {
+        display: inline;
+    }
+
+    h3 {
+        margin: 2em;
+    }
+    #philosopher {
+        margin-bottom: 3em;
+        margin-top: none;
+        height: 150px;
+        width: 150px;
+    }
+
+    #sb-left,
+    #sb-right {
+        display: none;
+        position: absolute;
+        width: 200px;
+        height: 90px;
+        opacity: 0%;
+        transition: 0.5s;
+        transition-property: opacity;
+        
+    }
+
+    #sb-left {
+        top: 17%;
+        left: calc(50% - 260px);
+    }
+
+    #sb-right {
+        top: 35%;
+        left: calc(50% + 56px);
+    }
+
+    #speech-left,
+    #speech-right {
+        font-size: 1em;
+        text-align: center;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 170px;
+        height: 90px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+        color: black;
+        box-sizing:border-box;
+        padding: 0.5em;
+        opacity: 0%;
+        transition: 0.5s;
+        transition-property: opacity;
+    }
+
+    #speech-left {
+        top: 17%;
+        left: calc(50% - 260px);
+    }
+
+    #speech-right {
+        top: 35%;
+        left: calc(50% + 86px);
+    }
+
+
+
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    15% { -webkit-transform: rotate(50deg); }
+    30% { -webkit-transform: rotate(110deg); }
+    60% { -webkit-transform: rotate(270deg); }
+    80% { -webkit-transform: rotate(330deg); }
+    90% { -webkit-transform: rotate(350deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(50deg); }
+    30% { transform: rotate(110deg); }
+    60% { transform: rotate(270deg); }
+    80% { transform: rotate(330deg); }
+    90% { transform: rotate(350deg); }
+    100% { transform: rotate(360deg); }
+}
