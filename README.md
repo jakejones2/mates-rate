@@ -31,6 +31,7 @@ To be honest - not totally sure! I was having errors early on in development tha
 - Improve SEO
 - Could make better use of Django HTML templating
 - Try to improve cohesion of consumers.py, delegate work elsewhere maybe.
+- Use BEM in styles for readability
 
 ### Features
 
