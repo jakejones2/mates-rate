@@ -205,7 +205,13 @@ else:
     }
 
 
-STATIC_ROOT = BASE_DIR.joinpath("static/")
+
+
+if not DEBUG and use_render:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+else:
+    STATIC_ROOT = BASE_DIR.joinpath("static/")
+
 STATIC_URL = "/static/"
 
 # Password validation
