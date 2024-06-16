@@ -29,7 +29,9 @@ To be honest - not totally sure! I was having errors early on in development tha
 - Improve accessibility - go through lighthouse reports etc. Some missing labels on input fields in game etc.
 - Think about the behaviour of skip round - doesn't achieve much at the moment. Also needs refactoring from its previous name of `force-next` in places.
 - Improve SEO
+- Could make better use of Django HTML templating
 - Try to improve cohesion of consumers.py, delegate work elsewhere maybe.
+- Use BEM in styles for readability
 
 ### Features
 
