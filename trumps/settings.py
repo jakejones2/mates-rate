@@ -73,7 +73,18 @@ INSTALLED_APPS = [
 
 ASGI_APPLICATION = "trumps.asgi.application"
 
-if dev_mode:
+using_render = True
+
+if using_render:
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [os.getenv("RENDER_REDIS_URL")],
+            },
+        },
+    }
+elif dev_mode:
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
