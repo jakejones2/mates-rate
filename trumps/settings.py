@@ -31,19 +31,23 @@ def get_environ_vars():
 
 
 # toggle these for local dev and debugging
-DEBUG = True
-dev_mode = True
-dockerised = True
+DEBUG = False
+dev_mode = False
+dockerised = False
+use_aws_eb = False
+use_postgres_with_docker = False
+use_sqlite_with_docker = True
+use_render = True
 
-if not dev_mode and not dockerised:
+if not dev_mode and use_aws_eb:
     ENV_VARS = get_environ_vars()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-if dev_mode or dockerised:
+if dev_mode:
     SECRET_KEY = "django-insecure-s)pj#h8@4*=tg006ztfen0%2+ad6^-z#22u9qjjlj^+k@iy53h"
     ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
-else:
+elif use_aws_eb:
     SECRET_KEY = ENV_VARS["DJANGO_SECRET_KEY"]
     ALLOWED_HOSTS = [
         "127.0.0.1",
@@ -54,6 +58,9 @@ else:
         ENV_VARS["ALLOWED_HOST4"],
         ENV_VARS["ALLOWED_HOST5"],
     ]
+else:
+    SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-s)pj#h8@4*=tg006ztfen0%2+ad6^-z#22u9qjjlj^+k@iy53h")
+    ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*")
 
 # Application definition
 
@@ -73,9 +80,7 @@ INSTALLED_APPS = [
 
 ASGI_APPLICATION = "trumps.asgi.application"
 
-using_render = True
-
-if using_render:
+if use_render:
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
@@ -84,21 +89,12 @@ if using_render:
             },
         },
     }
-elif dev_mode:
-    CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "channels_redis.core.RedisChannelLayer",
-            "CONFIG": {
-                "hosts": ["redis://mr_cache:6379/0"], # redis://localhost:6379 127.0.0.1
-            },
-        },
-    }
 elif dockerised:
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
             "CONFIG": {
-                "hosts": [("127.0.0.1", 6379)],
+                "hosts": ["redis://mr_cache:6379/0"],
             },
         },
     }
@@ -174,8 +170,6 @@ if not dev_mode:
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-use_postgres_with_docker = False
-use_sqlite_with_docker = True
 
 if dockerised and use_postgres_with_docker:
     DATABASES = {
@@ -188,7 +182,7 @@ if dockerised and use_postgres_with_docker:
             "PORT": "5432",
         }
     }
-elif dev_mode or (dockerised and use_sqlite_with_docker):
+elif dev_mode or (dockerised and use_sqlite_with_docker) or use_render:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",

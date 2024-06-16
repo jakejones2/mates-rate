@@ -21,6 +21,8 @@ WORKDIR /usr/src/app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# if using compose, delete the below
+
 COPY . /code
 #Add the following lines to make the release.sh script executable to run your script
 RUN chmod +x /code/release.sh
