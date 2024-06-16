@@ -60,7 +60,7 @@ elif use_aws_eb:
     ]
 else:
     SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-s)pj#h8@4*=tg006ztfen0%2+ad6^-z#22u9qjjlj^+k@iy53h")
-    ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*")
+    ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
 # Application definition
 
