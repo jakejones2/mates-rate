@@ -89,3 +89,4 @@ wcwidth==0.1.9
 websocket-client==0.59.0
 wsproto==1.2.0
 zope.interface==6.0
+whitenoise==6.6.0
