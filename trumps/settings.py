@@ -153,7 +153,7 @@ if not dev_mode:
         "handlers": {
             "file": {
                 "class": "logging.FileHandler",
-                "filename": os.getenv("DJANGO_LOG_FILE_PATH"),
+                "filename": os.getenv("DJANGO_LOG_FILE_PATH", "logs"),
                 "level": os.getenv("LOG_LEVEL", "INFO"),
                 "formatter": "time_message",
             },
