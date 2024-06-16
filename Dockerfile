@@ -21,4 +21,7 @@ WORKDIR /usr/src/app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENTRYPOINT [“python”, “manage.py”, “runserver”, ‘0.0.0.0:443]
+COPY . /code
+#Add the following lines to make the release.sh script executable to run your script
+RUN chmod +x /code/release.sh
+CMD ["/code/release.sh"]
