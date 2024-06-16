@@ -33,13 +33,14 @@ def get_environ_vars():
 # toggle these for local dev and debugging
 DEBUG = True
 dev_mode = True
+dockerised = True
 
-if not dev_mode:
+if not dev_mode and not dockerised:
     ENV_VARS = get_environ_vars()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-if dev_mode:
+if dev_mode or dockerised:
     SECRET_KEY = "django-insecure-s)pj#h8@4*=tg006ztfen0%2+ad6^-z#22u9qjjlj^+k@iy53h"
     ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 else:
@@ -77,11 +78,19 @@ if dev_mode:
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
             "CONFIG": {
+                "hosts": ["redis://mr_cache:6379/0"], # redis://localhost:6379 127.0.0.1
+            },
+        },
+    }
+elif dockerised:
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
                 "hosts": [("127.0.0.1", 6379)],
             },
         },
     }
-
 else:
     CHANNEL_LAYERS = {
         "default": {
@@ -154,7 +163,21 @@ if not dev_mode:
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if dev_mode:
+use_postgres_with_docker = False
+use_sqlite_with_docker = True
+
+if dockerised and use_postgres_with_docker:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "matesrate",
+            "USER": "jakejones",
+            "PASSWORD": "matesrate",
+            "HOST": "mr_db",
+            "PORT": "5432",
+        }
+    }
+elif dev_mode or (dockerised and use_sqlite_with_docker):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -164,7 +187,6 @@ if dev_mode:
             },
         }
     }
-
 else:
     DATABASES = {
         "default": {
